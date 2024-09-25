@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - main  ### Trigger pipeline on commits to the main branch
+      - main  #Trigger pipeline on commits to the main branch
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -41,6 +41,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'validate'  # Validate Terraform configuration
+              environmentServiceNameAzureRM: $(azureServiceConnection)
               workingDirectory: 'terraform'
           - task: TerraformTaskV4@4
             inputs:
